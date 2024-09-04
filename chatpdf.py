@@ -56,27 +56,12 @@ def get_conversational_chain():
 
 
 
-# def user_input(user_question):
-#     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
-    
-#     new_db = FAISS.load_local("faiss_index", embeddings)
-#     docs = new_db.similarity_search(user_question)
-####
-from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import GoogleGenerativeAIEmbeddings
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
-
 def user_input(user_question):
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding")
+    embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
     
-    # Allow dangerous deserialization
-    new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
-    
+    new_db = FAISS.load_local("faiss_index", embeddings)
     docs = new_db.similarity_search(user_question)
-    # ... rest of your code
+
 
     chain = get_conversational_chain()
 
